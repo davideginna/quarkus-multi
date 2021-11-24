@@ -13,7 +13,7 @@ import java.util.concurrent.CompletionStage;
 @ApplicationScoped
 public class ResourceConsumer {
 
-    @Incoming("receiver")
+    @Incoming("sender")
     @Retry(delay = 20, delayUnit = ChronoUnit.SECONDS, maxRetries = 0)
     @Blocking(ordered = false)
     @Acknowledgment(Acknowledgment.Strategy.MANUAL)
