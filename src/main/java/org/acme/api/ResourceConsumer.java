@@ -24,7 +24,7 @@ public class ResourceConsumer {
             System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " - start - ");
             metadata.ifPresent(entry -> System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " partition " + entry.getPartition()));
             Thread.sleep(2000);
-            System.out.println("[concurrent-test]" + Thread.currentThread().getName());
+            System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " - end - ");
             return message.ack();
         } catch (Exception e) {
             return message.nack(e);
