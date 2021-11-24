@@ -1,3 +1,11 @@
 # quarkus-multi Project
 
-project to test multithreading
+#### Project to test multithreading
+
+
+run with
+```
+mvn quarkus:test
+```
+
+file to run --> src/test/java/org/acme/ResourceTest.java
