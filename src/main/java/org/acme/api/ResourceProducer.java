@@ -18,16 +18,6 @@ public class ResourceProducer {
     Emitter<ResourceDTO> resourceDTOEmitter;
 
     public CompletableFuture<Void> send(ResourceDTO resourceDTO) {
-        Random random = new Random();
-        var r = random.ints(0, 3).findFirst();
-        if (r.isPresent()) {
-            var metadata = Metadata.of(
-                    OutgoingKafkaRecordMetadata.builder()
-                            .withPartition(r.getAsInt())//number of partiton
-            );
-            var message = Message.of(resourceDTO, metadata);
-            resourceDTOEmitter.send(message);
-        }
-        return CompletableFuture.completedFuture(null);
+        return resourceDTOEmitter.send(resourceDTO).toCompletableFuture();
     }
 }

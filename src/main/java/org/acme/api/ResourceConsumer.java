@@ -22,7 +22,7 @@ public class ResourceConsumer {
         try {
             var metadata = message.getMetadata(IncomingKafkaRecordMetadata.class);
             System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " - start - ");
-            metadata.ifPresent(entry -> System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " partition " + entry.getPartition()));
+            metadata.ifPresent(entry -> System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " partition " + entry.getPartition() + " " + message.getPayload().getMessage()));
             Thread.sleep(2000);
             System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " - end - ");
             return message.ack();

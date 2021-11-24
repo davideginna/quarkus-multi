@@ -16,15 +16,11 @@ public class ResourceTest {
 
     @Test
     public void test() {
-        var result1 = resourceProducer.send(new ResourceDTO());
-        var result2 = resourceProducer.send(new ResourceDTO());
-        var result3 = resourceProducer.send(new ResourceDTO());
-        var result4 = resourceProducer.send(new ResourceDTO());
-        var result5 = resourceProducer.send(new ResourceDTO());
-        var result6 = resourceProducer.send(new ResourceDTO());
-        var result7 = resourceProducer.send(new ResourceDTO());
+        var result1 = resourceProducer.send(new ResourceDTO("1"));
+        var result2 = resourceProducer.send(new ResourceDTO("2"));
+        var result3 = resourceProducer.send(new ResourceDTO("3"));
         try {
-            CompletableFuture.allOf(result1, result2, result3,result4,result5,result6,result7);
+            CompletableFuture.allOf(result1, result2, result3);
             // wait for consumer
             Thread.sleep(10000);
         } catch (Exception ex) {
