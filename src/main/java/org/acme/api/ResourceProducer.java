@@ -1,6 +1,5 @@
 package org.acme.api;
 
-import io.smallrye.reactive.messaging.annotations.Broadcast;
 import io.smallrye.reactive.messaging.kafka.api.OutgoingKafkaRecordMetadata;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
