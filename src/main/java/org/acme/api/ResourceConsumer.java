@@ -1,6 +1,7 @@
 package org.acme.api;
 
 import io.smallrye.reactive.messaging.annotations.Blocking;
+import io.smallrye.reactive.messaging.kafka.api.IncomingKafkaRecordMetadata;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.reactive.messaging.Acknowledgment;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
@@ -13,15 +14,16 @@ import java.util.concurrent.CompletionStage;
 @ApplicationScoped
 public class ResourceConsumer {
 
-    @Incoming("sender")
+    @Incoming("event")
     @Retry(delay = 20, delayUnit = ChronoUnit.SECONDS, maxRetries = 0)
     @Blocking(ordered = false)
     @Acknowledgment(Acknowledgment.Strategy.MANUAL)
     public CompletionStage<Void> process(Message<ResourceDTO> incomingMessage) {
         try {
-
+            var metadata = incomingMessage.getMetadata(IncomingKafkaRecordMetadata.class);
 //            log.info("AtomicLong:" + wip.incrementAndGet());
             System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " - start - ");
+            metadata.ifPresent(entry -> System.out.println("[concurrent-test]" + Thread.currentThread().getName() + " partition " + entry.getPartition()));
 
             Thread.sleep(2000);
 

@@ -13,7 +13,6 @@ import java.util.concurrent.CompletableFuture;
 public class ResourceProducer {
     @Inject
     @Channel("sender")
-    @Broadcast
     Emitter<ResourceDTO> resourceDTOEmitter;
 
     public CompletableFuture<Void> send(ResourceDTO resourceDTO) {
